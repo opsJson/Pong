@@ -18,7 +18,7 @@ static void DrawRec(int x, int y, int w, int h, int color) {
 	{
 		for (x1=y; x1<y+h; x1++)
 		{
-			DrawPixel(x1, y1, color);
+			DrawPixel(y1, x1, color);
 		}
 	}
 }

@@ -46,7 +46,11 @@ void gameInit() {
 
 void gameUpdate(float delta) {
 	
-	if (GetAsyncKeyState(VK_ESCAPE)) exit(1);
+	if (GetAsyncKeyState(VK_ESCAPE))
+	{
+		isRunning = false;
+		return;
+	}
 	
 	//init game
 	if (GetAsyncKeyState(VK_SPACE))

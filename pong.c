@@ -134,14 +134,14 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     {
     	case WM_CREATE: {
     		
-			hdc = GetWindowDC(hwnd);
-			
-			bitmapinfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-			bitmapinfo.bmiHeader.biWidth = screenX;
-			bitmapinfo.bmiHeader.biHeight = screenY;
-			bitmapinfo.bmiHeader.biPlanes = 1;
-			bitmapinfo.bmiHeader.biBitCount = 32;
-			bitmapinfo.bmiHeader.biCompression = BI_RGB;
+		hdc = GetWindowDC(hwnd);
+
+		bitmapinfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+		bitmapinfo.bmiHeader.biWidth = screenX;
+		bitmapinfo.bmiHeader.biHeight = screenY;
+		bitmapinfo.bmiHeader.biPlanes = 1;
+		bitmapinfo.bmiHeader.biBitCount = 32;
+		bitmapinfo.bmiHeader.biCompression = BI_RGB;
     		
     		gameInit();
 			break;
@@ -166,15 +166,15 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 }
 
 int main(void) {
-	MSG msg;
-	WNDCLASSEX wc = {0};
-	
-	wc.cbSize 			= sizeof(WNDCLASSEX);
-	wc.lpszClassName 	= "MyCustomPongClass";
-	wc.lpfnWndProc 		= WndProc;
-	wc.hIconSm       	= (HICON)LoadImage(0, ("icon.ico"), IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_LOADFROMFILE);
-	
-	RegisterClassEx(&wc);
+    MSG msg;
+    WNDCLASSEX wc = {0};
+
+    wc.cbSize 		= sizeof(WNDCLASSEX);
+    wc.lpszClassName 	= "MyCustomPongClass";
+    wc.lpfnWndProc 	= WndProc;
+    wc.hIconSm       	= (HICON)LoadImage(0, ("icon.ico"), IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_LOADFROMFILE);
+
+    RegisterClassEx(&wc);
 	
     hwnd = CreateWindowEx(
         WS_EX_CLIENTEDGE,
@@ -188,29 +188,29 @@ int main(void) {
     
     float delta, now, last = 0;
 	
-	while (isRunning)
+    while (isRunning)
+    {
+	if (PeekMessage(&msg, hwnd, 0, 0, PM_REMOVE))
 	{
-		if (PeekMessage(&msg, hwnd, 0, 0, PM_REMOVE))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		
-		now = clock();
-		delta = now - last;
-		last = now;
-		
-		if (GetForegroundWindow() == hwnd) 
-		{
-			gameUpdate(delta);
-			
-		    StretchDIBits(hdc, 0, 0, screenX, screenY,
-							   0, 0, screenX, screenY, buffer,
-							   &bitmapinfo, DIB_RGB_COLORS, SRCCOPY);
-		}
-		
-		Sleep(1);
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
 	}
+
+	now = clock();
+	delta = now - last;
+	last = now;
+
+	if (GetForegroundWindow() == hwnd) 
+	{
+		gameUpdate(delta);
+
+	    StretchDIBits(hdc, 0, 0, screenX, screenY,
+			  0, 0, screenX, screenY, buffer,
+		      	  &bitmapinfo, DIB_RGB_COLORS, SRCCOPY);
+	}
+
+	Sleep(1);
+    }
 	
 	return 0;
 }

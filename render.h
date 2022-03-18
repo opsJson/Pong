@@ -12,13 +12,13 @@ static void DrawPixel(int x, int y, int color) {
 }
 
 static void DrawRec(int x, int y, int w, int h, int color) {
-	int i, j;
+	int x1, y1;
 	
-	for (i=x; i<x+w; i++)
+	for (y1=x; y1<x+w; y1++)
 	{
-		for (j=y; j<y+h; j++)
+		for (x1=y; x1<y+h; x1++)
 		{
-			DrawPixel(i, j, color);
+			DrawPixel(x1, y1, color);
 		}
 	}
 }

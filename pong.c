@@ -206,7 +206,7 @@ int main(void) {
 
 	if (GetForegroundWindow() == hwnd) 
 	{
-		gameUpdate(delta);
+	    gameUpdate(delta);
 
 	    StretchDIBits(hdc, 0, 0, screenX, screenY,
 			  0, 0, screenX, screenY, buffer,

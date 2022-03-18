@@ -73,11 +73,11 @@ void gameUpdate(float delta) {
 	}
 	
 	//player2 controls
-	if (GetAsyncKeyState('I'))
+	if (GetAsyncKeyState(VK_UP))
 	{
 		p2.y += p2.speedY * delta;
 	}
-	if (GetAsyncKeyState('K'))
+	if (GetAsyncKeyState(VK_DOWN))
 	{
 		p2.y -= p2.speedY * delta;
 	}

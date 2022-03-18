@@ -53,8 +53,8 @@ void gameUpdate(float delta) {
 	{
 		if (!ball.speedX)
 		{
-			ball.speedX = 0.5f;
-			ball.speedY = 0.5f;	
+		    ball.speedX = 0.5f;
+		    ball.speedY = 0.5f;	
 		}
 	}
 	

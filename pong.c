@@ -177,7 +177,8 @@ int main(void) {
     wc.lpszClassName 	= "MyCustomPongClass";
     wc.lpfnWndProc 	= WndProc;
     wc.hIconSm       	= (HICON)LoadImage(0, ("icon.ico"), IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_LOADFROMFILE);
-
+    wc.hCursor          = LoadCursor(NULL, IDC_ARROW);
+	
     RegisterClassEx(&wc);
 	
     hwnd = CreateWindowEx(
